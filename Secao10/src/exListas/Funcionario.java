@@ -32,6 +32,10 @@ public class Funcionario {
         this.salario = salario;
     }
 
+    public void aumentaSalario(double percentual) {
+        this.salario *= (1 + percentual / 100);
+    }
+
     @Override
     public String toString() {
         return "Id: " + this.id + ", Nome: " + this.nome + ", Salário: " + this.getSalario();

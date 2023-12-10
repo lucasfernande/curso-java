@@ -33,16 +33,16 @@ public class Main {
         }
 
         System.out.print("Digite o id do funcionário que receberá aumento: ");
-        double idAumento = Double.parseDouble(sc.nextLine());
+        int idAumento = Integer.parseInt(sc.nextLine());
 
-        Funcionario func = funcs.stream().filter(f -> f.getId() == idAumento).findFirst().orElse(null);
-        if (func == null) {
+        int funcPos = buscarId(funcs, idAumento);
+        if (funcPos == -1) {
             System.out.println("Funcionário não existe!");
         } else {
             System.out.print("Digite a porcentagem de aumento: ");
             double percentual = Double.parseDouble(sc.nextLine());
 
-            func.setSalario(func.getSalario() * (1 + percentual / 100));
+            funcs.get(funcPos).aumentaSalario(percentual);
         }
 
         System.out.println("Lista de Funcionários: ");
@@ -51,5 +51,14 @@ public class Main {
         }
 
         sc.close();
+    }
+
+    public static int buscarId(List<Funcionario> funcs, int id) {
+        for (int i = 0; i < funcs.size(); i++) {
+            if (funcs.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
