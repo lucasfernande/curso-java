@@ -20,5 +20,17 @@ public class Main {
         System.out.println("Data: " + data);
         System.out.println("Data e hora: " + dataHora);
         System.out.println("Data com fuso horário: " + dataGlobal); // Z -> Horário de Londres
+
+        // Criando objetos data a partir de textos
+
+        LocalDate dataTexto = LocalDate.parse("2021-11-27");
+        LocalDateTime dataHoraTexto = LocalDateTime.parse("2021-11-27T19:05:21");
+        Instant dataGlobalTexto = Instant.parse("2021-11-27T19:05:21Z");
+        Instant dataGlobalConvertida = Instant.parse("2021-11-27T19:05:21-03:00"); // adiciona 3 horas, ou seja, horário de Londres
+
+        System.out.println(dataTexto);
+        System.out.println(dataHoraTexto);
+        System.out.println(dataGlobalTexto);
+        System.out.println(dataGlobalConvertida);
     }
 }
