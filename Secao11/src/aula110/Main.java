@@ -3,6 +3,7 @@ package aula110;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,5 +33,13 @@ public class Main {
         System.out.println(dataHoraTexto);
         System.out.println(dataGlobalTexto);
         System.out.println(dataGlobalConvertida);
+
+        DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // colocando uma data no formato brasileiro
+        LocalDate dataBrasil = LocalDate.parse("28/01/2023", formato1);
+        System.out.println(dataBrasil);
+
+        DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime dataHoraBr = LocalDateTime.parse("08/08/2020 18:30", formato2);
+        System.out.println(dataHoraBr);
     }
 }
