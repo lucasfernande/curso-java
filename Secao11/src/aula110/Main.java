@@ -41,5 +41,16 @@ public class Main {
         DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime dataHoraBr = LocalDateTime.parse("08/08/2020 18:30", formato2);
         System.out.println(dataHoraBr);
+
+        int ano = 2023;
+        int mes = 12;
+        int dia = 13;
+        LocalDate dataVariaveis = LocalDate.of(ano, mes, dia);
+        System.out.println(dataVariaveis);
+
+        int hora = 19;
+        int minuto = 50;
+        LocalDateTime dataHoraVariaveis = LocalDateTime.of(ano, mes, dia, hora, minuto);
+        System.out.println(dataHoraVariaveis);
     }
 }
