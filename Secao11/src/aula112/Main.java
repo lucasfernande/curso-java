@@ -18,5 +18,14 @@ public class Main {
 
         System.out.println(dataBrasil);
         System.out.println(dataPortugal);
+
+        System.out.println(data.getDayOfMonth());
+        System.out.println(data.getMonthValue());
+        System.out.println(data.getYear());
+
+        System.out.println(dataHora.getHour());
+        System.out.println(dataHora.getMinute());
+        System.out.println(dataHora.getSecond());
+        
     }
 }
