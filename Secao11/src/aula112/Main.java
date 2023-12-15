@@ -26,6 +26,6 @@ public class Main {
         System.out.println(dataHora.getHour());
         System.out.println(dataHora.getMinute());
         System.out.println(dataHora.getSecond());
-        
+
     }
 }
