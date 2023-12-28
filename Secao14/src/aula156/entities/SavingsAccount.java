@@ -1,6 +1,8 @@
 package aula156.entities;
 
-public class SavingsAccount extends Account {
+
+// a palavra final evita que a classe SavingsAccount seja herdada, e também serve para evitar que métodos sejam sobrepostos
+public final class SavingsAccount extends Account {
 
     private Double interestRate;
 
