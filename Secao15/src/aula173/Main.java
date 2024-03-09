@@ -36,18 +36,11 @@ public class Main {
             System.out.print("Check-out date (dd/mm/yyyy): ");
             checkOut = LocalDate.parse(sc.nextLine(), dateFormat);
 
-            duration = Duration.between(checkIn.atStartOfDay(), checkOut.atStartOfDay());
+            String error = reservation.updateDates(checkIn, checkOut);
 
-            LocalDate now = LocalDate.now();
-            Duration durationCheckInAndNow = Duration.between(now.atStartOfDay(), checkIn.atStartOfDay());
-            Duration durationCheckOutAndNow = Duration.between(now.atStartOfDay(), checkOut.atStartOfDay());
-
-            if (durationCheckInAndNow.toDays() < 0 || durationCheckOutAndNow.toDays() < 0) {
-                System.out.println("Error in reservation: Reservation dates for update must be future dates");
-            } else if (duration.toDays() < 0 ) {
-                System.out.println("Error in reservation: Check-out date must be after check-in date");
+            if (error != null) {
+                System.out.println(error);
             } else {
-                reservation.updateDates(checkIn, checkOut);
                 System.out.println(reservation);
             }
         }
