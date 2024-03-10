@@ -1,5 +1,7 @@
 package aula173.model.entities;
 
+import aula173.model.exceptions.DomainException;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,9 +11,15 @@ public class Reservation {
     private LocalDate checkIn;
     private LocalDate checkOut;
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
     public Reservation(Integer roomNumber, LocalDate checkIn, LocalDate checkOut) {
+        Duration duration = Duration.between(checkIn.atStartOfDay(), checkOut.atStartOfDay());
+        if (duration.toDays() < 0) {
+            throw new DomainException("Error in reservation: Check-out date must be after check-in date");
+        }
+
         this.roomNumber = roomNumber;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -38,22 +46,20 @@ public class Reservation {
         return duration.toDays();
     }
 
-    public String updateDates(LocalDate checkIn, LocalDate checkOut) {
+    public void updateDates(LocalDate checkIn, LocalDate checkOut) {
         LocalDate now = LocalDate.now();
         Duration duration = Duration.between(checkIn.atStartOfDay(), checkOut.atStartOfDay());
         Duration durationCheckInAndNow = Duration.between(now.atStartOfDay(), checkIn.atStartOfDay());
         Duration durationCheckOutAndNow = Duration.between(now.atStartOfDay(), checkOut.atStartOfDay());
 
         if (durationCheckInAndNow.toDays() < 0 || durationCheckOutAndNow.toDays() < 0) {
-            return "Error in reservation: Reservation dates for update must be future dates";
-        } else if (duration.toDays() < 0 ) {
-            return "Error in reservation: Check-out date must be after check-in date";
+            throw new DomainException("Error in reservation: Reservation dates for update must be future dates");
+        } else if (duration.toDays() < 0) {
+            throw new DomainException("Error in reservation: Check-out date must be after check-in date");
         }
 
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-
-        return null; // se não ocorrer nenhum erro, retornará nulo
     }
 
     @Override
