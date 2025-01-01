@@ -14,6 +14,8 @@ package solucaoSemInterface.application;
 
 import solucaoSemInterface.model.entities.CarRental;
 import solucaoSemInterface.model.entities.Vehicle;
+import solucaoSemInterface.model.services.BrazilTaxService;
+import solucaoSemInterface.model.services.RentalService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +39,20 @@ public class Program {
         LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), fmt);
 
         CarRental cr = new CarRental(start, finish, new Vehicle(carModel));
+
+        System.out.print("Enter the price per hour: ");
+        double pricePerHour = Double.parseDouble(sc.nextLine());
+        System.out.print("Enter the price per day: ");
+        double pricePerDay = Double.parseDouble(sc.nextLine());
+
+        RentalService rentalService = new RentalService(pricePerDay, pricePerHour, new BrazilTaxService());
+        rentalService.processInvoice(cr);
+
+        System.out.println("Invoice:");
+        System.out.println("Basic payment: $" + String.format("%.2f", cr.getInvoice().getBasicPayment()));
+        System.out.println("Tax: $" + String.format("%.2f", cr.getInvoice().getTax()));
+        System.out.println("Total payment: $" + String.format("%.2f", cr.getInvoice().getTotalPayment()));
+
         sc.close();
     }
 }
