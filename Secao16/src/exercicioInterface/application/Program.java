@@ -35,7 +35,7 @@ public class Program {
         contractService.processContract(contract, installmentsQtt);
 
         for (Installment i : contract.getInstallments()) {
-            System.out.println(i.getDueDate().format(fmt) + ", $" + i.getAmount());
+            System.out.println(i);
         }
 
         sc.close();

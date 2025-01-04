@@ -1,6 +1,7 @@
 package exercicioInterface.model.entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Installment {
     private LocalDate dueDate;
@@ -25,5 +26,11 @@ public class Installment {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.getDueDate().format(fmt) + " - $ " + String.format("%.2f", this.getAmount());
     }
 }
